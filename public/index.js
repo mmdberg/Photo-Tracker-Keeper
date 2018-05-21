@@ -59,10 +59,22 @@ const addPhoto = async (e) => {
   }
 }
 
-const deletePhoto = (event) => {
+const deletePhoto = async (event) => {
   if($(event.target).hasClass('delete-button')) {
-    let photoToRemove = ($(event.target).parent()).attr('id')
-    console.log(photoToRemove);
+    let photoToRemove = ($(event.target).parent())
+    let idToRemove = $(photoToRemove).attr('id')
+    try {
+      let response = await fetch(`/api/v1/photos/${idToRemove}`, {
+        method: 'DELETE'
+      })
+      let responseMessage = await response.json()
+      console.log(responseMessage);
+      if(responseMessage.message) {
+        $(photoToRemove).remove()
+      }
+    } catch (error) {
+      console.log('deletePhoto error: ', error);
+    }
   }
 }
 
