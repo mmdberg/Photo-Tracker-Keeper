@@ -4,13 +4,14 @@
 }
 
 h1 {
-  color: aqua;
+  color: #2E2F2F;
   text-align: center;
 }
 
 .add-photo-form {
-  border: 3px solid maroon;
-  background-color: magenta;
+  padding: 20px;
+  border: 3px solid #A599B5;
+  background-color: #CDDDDD;
 }
 
 input,
@@ -33,20 +34,26 @@ input {
   height: 40px;
 }
 
+.add-photo-button:hover {
+  background-color: #A599B5;
+}
+
 .photo-album {
-  border: 3px dashed maroon;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  background-color: grey;
 }
 
 .photo {
   width: 300px;
   height: 300px;
   display: inline-block;
-  border: 1px black solid;
+  border: 3px solid #A599B5;
   padding: 10px;
   margin: auto;
   text-align: center;
+  background-color: #CFD3D3;
 }
 
 img {
@@ -57,6 +64,7 @@ img {
 
 .photo-title {
   font-size: 20px;
+  padding: 15px;
 }
 
 .delete-button {
@@ -66,4 +74,5 @@ img {
   height: 20px;
   width: 20px;
   background-repeat: no-repeat;
+  background-color: #CFD3D3;
 }

@@ -49,7 +49,7 @@ const addPhoto = async (e) => {
       })
     })
     let id = await response.json()
-    if (id) {
+    if (id.id) {
       appendNewPhoto(title, link, id.id)
       $('.title-input').val('')
       $('.link-input').val('')
@@ -64,14 +64,10 @@ const deletePhoto = async (event) => {
     let photoToRemove = ($(event.target).parent())
     let idToRemove = $(photoToRemove).attr('id')
     try {
-      let response = await fetch(`/api/v1/photos/${idToRemove}`, {
+      fetch(`/api/v1/photos/${idToRemove}`, {
         method: 'DELETE'
       })
-      let responseMessage = await response.json()
-      console.log(responseMessage);
-      if(responseMessage.message) {
-        $(photoToRemove).remove()
-      }
+      $(photoToRemove).remove()
     } catch (error) {
       console.log('deletePhoto error: ', error);
     }
