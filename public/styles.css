@@ -1,0 +1,29 @@
+h1 {
+  color: aqua;
+  text-align: center;
+}
+
+.add-photo-form {
+  border: 3px solid maroon;
+  background-color: magenta;
+}
+
+input,
+.add-photo-button {
+  display: block;
+  margin: 10px auto;
+}
+
+input {
+  line-height: 300%;
+  width: 400px;
+}
+
+.add-photo-button {
+  border: none;
+  height: 40px;
+}
+
+.photo-album {
+  border: 3px dashed maroon;
+}
