@@ -22,6 +22,24 @@ app.get('/api/v1/photos', (request, response) => {
     })
 })
 
+app.post('/api/v1/photos', (request, response) => {
+  let newPhoto = request.body
+
+  for (let requiredParameter of ['title', 'link']) {
+    if(!newPhoto[requiredParameter]) {
+      return response.status(422).send({error: `You are missing a ${requiredParameter}`})
+    }
+  }
+
+  database('photos').insert(newPhoto, 'id')
+    .then(photo => {
+      return response.status(201).json({id: paper[0]})
+    })
+    .catch(error => {
+      return response.status(500).json({error})
+    });
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}`)
 })
