@@ -10,6 +10,7 @@ const fetchPhotos = async () => {
       <article class="photo" id=${photoInfo.id}>
         <img src="${photoInfo.link}" alt="${photoInfo.title}">
         <p class="photo-title">${photoInfo.title}</p>
+        <button class="delete-button"><img src="./garbage.png" alt="" /></button>
       </article>
       `)
     })
@@ -26,6 +27,7 @@ const appendNewPhoto = (title, link, id) => {
     <article class="photo" id=${id}>
       <img src="${link}" alt="${title}">
       <p class="photo-title">${title}</p>
+      <button class="delete-button"><img src="./garbage.png" alt="" /></button>
     </article>
     `)
 }

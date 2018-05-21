@@ -54,3 +54,12 @@ img {
 .photo-title {
   font-size: 20px;
 }
+
+.delete-button img {
+  height: 20px;
+  border: none;
+}
+
+.delete-button {
+  border: none;
+}
