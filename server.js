@@ -24,7 +24,6 @@ app.get('/api/v1/photos', (request, response) => {
 
 app.post('/api/v1/photos', (request, response) => {
   let newPhoto = request.body
-  console.log(newPhoto)
 
   for (let requiredParameter of ['title', 'link']) {
     if(!newPhoto[requiredParameter]) {
@@ -34,13 +33,28 @@ app.post('/api/v1/photos', (request, response) => {
 
   database('photos').insert(newPhoto, 'id')
     .then(photo => {
-
       return response.status(201).json({id: photo[0]})
     })
-    .catch(error => {
+    .catch((error) => {
+      console.log('wooowowoowo')
       return response.status(500).json({error})
     });
 });
+
+app.delete('/api/v1/photos/:id', (request, response) => {
+  let id = request.params.id
+  
+  database('photos').where('id', id).del()
+    .then(response => {
+      console.log('woooo')
+      return response.status(201).json({message: 'Success'})
+    })
+    .catch((error) => {
+      console.log('nooo');
+      return response.status(500).json({error})
+    })
+
+})
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}`)
