@@ -32,6 +32,7 @@ input {
 .photo-album {
   border: 3px dashed maroon;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .photo {
