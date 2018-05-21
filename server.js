@@ -24,6 +24,7 @@ app.get('/api/v1/photos', (request, response) => {
 
 app.post('/api/v1/photos', (request, response) => {
   let newPhoto = request.body
+  console.log(newPhoto)
 
   for (let requiredParameter of ['title', 'link']) {
     if(!newPhoto[requiredParameter]) {
@@ -33,7 +34,8 @@ app.post('/api/v1/photos', (request, response) => {
 
   database('photos').insert(newPhoto, 'id')
     .then(photo => {
-      return response.status(201).json({id: paper[0]})
+
+      return response.status(201).json({id: photo[0]})
     })
     .catch(error => {
       return response.status(500).json({error})
