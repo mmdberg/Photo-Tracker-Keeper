@@ -10,7 +10,7 @@ const fetchPhotos = async () => {
       <article class="photo" id=${photoInfo.id}>
         <img src="${photoInfo.link}" alt="${photoInfo.title}">
         <p class="photo-title">${photoInfo.title}</p>
-        <button class="delete-button"><img src="./garbage.png" alt="" /></button>
+        <button class="delete-button"></button>
       </article>
       `)
     })
@@ -27,9 +27,9 @@ const appendNewPhoto = (title, link, id) => {
     <article class="photo" id=${id}>
       <img src="${link}" alt="${title}">
       <p class="photo-title">${title}</p>
-      <button class="delete-button"><img src="./garbage.png" alt="" /></button>
+      <button class="delete-button"></button>
     </article>
-    `)
+  `)
 }
 
 const addPhoto = async (e) => {
@@ -49,13 +49,23 @@ const addPhoto = async (e) => {
       })
     })
     let id = await response.json()
-    appendNewPhoto(title, link, id.id)
-    $('.title-input').val('')
-    $('.link-input').val('')
+    if (id) {
+      appendNewPhoto(title, link, id.id)
+      $('.title-input').val('')
+      $('.link-input').val('')
+    }
   } catch (error) {
     console.log('addPhoto error: ', error);
   }
 }
 
+const deletePhoto = (event) => {
+  if($(event.target).hasClass('delete-button')) {
+    let photoToRemove = ($(event.target).parent()).attr('id')
+    console.log(photoToRemove);
+  }
+}
+
 fetchPhotos()
 $('.add-photo-button').click(addPhoto)
+$(this).click(deletePhoto)
