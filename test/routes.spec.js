@@ -40,7 +40,6 @@ describe('Endpoint tests', () => {
     chai.request(app)
     .post('/api/v1/photos')
     .send({
-      id: 3,
       title: 'Christmas Dog',
       link: 'https://i.imgur.com/qJfO82l.jpg'
     })
@@ -88,11 +87,24 @@ describe('Endpoint tests', () => {
     })
   })
 
-  it.skip('should DELETE a photo', (done) => {
+  it('should DELETE a photo', (done) => {
     chai.request(app)
-    .delete('/api/v1/photos')
+    .delete('/api/v1/photos/2')
     .end((error, response) => {
       response.should.have.status(201);
+      response.body.should.have.property('message');
+      response.body.message.should.equal('Success')
+      done()
+    })
+  })
+
+  it('should not DELETE a photo if id is wrong', (done) => {
+    chai.request(app)
+    .delete('/api/v1/photos/222')
+    .end((error, response) => {
+      response.should.have.status(422);
+      response.body.should.have.property('message');
+      response.body.message.should.equal('No photo exists')
       done()
     })
   })
