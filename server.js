@@ -48,7 +48,7 @@ app.delete('/api/v1/photos/:id', (request, response) => {
       if(resp === 1) {
         return response.status(201).json({message: 'Success'})
       } else {
-        return response.status(422).json({message: 'No photo exists'})
+        return response.status(404).json({message: 'No photo exists'})
       }
     })
     .catch((error) => {

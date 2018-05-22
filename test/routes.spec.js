@@ -102,7 +102,7 @@ describe('Endpoint tests', () => {
     chai.request(app)
     .delete('/api/v1/photos/222')
     .end((error, response) => {
-      response.should.have.status(422);
+      response.should.have.status(404);
       response.body.should.have.property('message');
       response.body.message.should.equal('No photo exists')
       done()
