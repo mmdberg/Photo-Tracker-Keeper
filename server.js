@@ -44,8 +44,12 @@ app.delete('/api/v1/photos/:id', (request, response) => {
   let id = request.params.id
   
   database('photos').where('id', id).del()
-    .then(response => {
-      return response.status(201).json({message: 'Success'})
+    .then(resp => {
+      if(resp === 1) {
+        return response.status(201).json({message: 'Success'})
+      } else {
+        return response.status(422).json({message: 'No photo exists'})
+      }
     })
     .catch((error) => {
       return response.status(500).json({error})

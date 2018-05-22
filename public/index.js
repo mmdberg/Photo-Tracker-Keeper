@@ -4,7 +4,6 @@ const fetchPhotos = async () => {
   try {
     let response = await fetch('/api/v1/photos')
     let photos = await response.json()
-    console.log(photos)
     let photosArray = photos.map(photoInfo => {
       return (`
       <article class="photo" id=${photoInfo.id}>
