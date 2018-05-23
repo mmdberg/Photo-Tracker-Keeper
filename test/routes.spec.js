@@ -57,7 +57,6 @@ describe('Endpoint tests', () => {
     chai.request(app)
     .post('/api/v1/photos')
     .send({
-      id: 3,
       link: 'https://i.imgur.com/qJfO82l.jpg'
     })
     .end((error, response) => {
@@ -74,7 +73,6 @@ describe('Endpoint tests', () => {
     chai.request(app)
     .post('/api/v1/photos')
     .send({
-      id: 3,
       title: 'Christmas Dog'
     })
     .end((error, response)=> {
